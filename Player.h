@@ -17,6 +17,7 @@ public:
     Player(Field *start_point, Fields &playerFields, char col, unsigned int p);
     int turn(Dice *dice, Players &players, Fields &fieldsToPlay);
     void checkIfFieldHasPawn(Players &players, Fields &fieldsToPlay);
+    void setPawnOnField();
 
     unsigned int FINISH = 51;
 

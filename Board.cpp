@@ -176,6 +176,6 @@ void Board::play() {
                 fieldsGreen.at(i)->set_Pixmap(QPixmap(":/img/greenfinish.png"));
         }
 
-        QTimer::singleShot(20, [this] { play(); } );
+        QTimer::singleShot(200, [this] { play(); } );
     }
 }

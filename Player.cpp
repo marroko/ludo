@@ -32,38 +32,25 @@ int Player::turn(Dice *dice, Players &players, Fields &fieldsToPlay) {
 
         result = dice->roll();
         std::cout << result << '\n';
+        pawns.at(0)->currentField->set_Pixmap(QPixmap(":/img/border.png"));
 
         while(result) {
 
-            pawns.at(0)->currentField->set_Pixmap(QPixmap(":/img/border.png"));
             pawns.at(0)->currentField->setPawn(nullptr);
             bool finito = pawns.at(0)->move(fieldsToPlay, baseAndFinish, FINISH);
 
-            if(result == 1)
-                checkIfFieldHasPawn(players, fieldsToPlay);
+            if(result == 1) {
 
+                checkIfFieldHasPawn(players, fieldsToPlay);
+                setPawnOnField();
+            }
             pawns.at(0)->currentField->setPawn(pawns.at(0));
 
-            char col = pawns.at(0)->getColour();
-            switch (col) {
-
-                case 'b':
-                    pawns.at(0)->currentField->set_Pixmap(QPixmap(":/img/bluepawn.png"));
-                    break;
-                case 'r':
-                    pawns.at(0)->currentField->set_Pixmap(QPixmap(":/img/redpawn.png"));
-                    break;
-                case 'y':
-                    pawns.at(0)->currentField->set_Pixmap(QPixmap(":/img/yellowpawn.png"));
-                    break;
-                case 'g':
-                    pawns.at(0)->currentField->set_Pixmap(QPixmap(":/img/greenpawn.png"));
-                    break;
-            }
 
             if(finito) {
 
                 finishedPawns++;
+                setPawnOnField();
                 delete pawns.at(0);
                 pawns.erase(pawns.begin());
                 hasPawnOnField = false;
@@ -88,6 +75,7 @@ int Player::turn(Dice *dice, Players &players, Fields &fieldsToPlay) {
 
            if(result == 6) {
 
+               checkIfFieldHasPawn(players, fieldsToPlay);
                hasPawnOnField = true;
                char col = pawns.at(0)->getColour();
 
@@ -158,5 +146,25 @@ void Player::checkIfFieldHasPawn(Players &players, Fields &fieldsToPlay) {
            fieldsToPlay.at(36)->set_Pixmap(QPixmap(":/img/greenpawn.png"));
            break;
        }
+    }
+}
+
+void Player::setPawnOnField() {
+
+    char col = pawns.at(0)->getColour();
+    switch (col) {
+
+        case 'b':
+            pawns.at(0)->currentField->set_Pixmap(QPixmap(":/img/bluepawn.png"));
+            break;
+        case 'r':
+            pawns.at(0)->currentField->set_Pixmap(QPixmap(":/img/redpawn.png"));
+            break;
+        case 'y':
+            pawns.at(0)->currentField->set_Pixmap(QPixmap(":/img/yellowpawn.png"));
+            break;
+        case 'g':
+            pawns.at(0)->currentField->set_Pixmap(QPixmap(":/img/greenpawn.png"));
+            break;
     }
 }
