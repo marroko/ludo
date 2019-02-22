@@ -47,8 +47,7 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-#DISTFILES += \
-#    redpawn.png
-
 RESOURCES += \
     rsrc.qrc
+
+RC_ICONS = icon.ico
