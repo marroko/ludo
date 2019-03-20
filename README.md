@@ -6,4 +6,4 @@ Repo presents single game proceeded by computer. Concept is based on common rule
 * player must roll <b>6</b> in order to introduce next pawn,
 * when <b>2</b> pawns meet on the same field after the end of turn, staying pawn is automatically sent to its start field.
 
-![Screenshot](ludo.JPG)
+<img src="img/ludo.JPG" width="60%" length="60%">
