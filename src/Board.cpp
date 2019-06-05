@@ -5,15 +5,12 @@ Board::Board() : dice(new Dice()) {
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
     timer->start(1000);
-
 }
 
 Board::~Board() {
 
-    for (unsigned int i=0; i<fieldsToPlay.size(); ++i) {
-
-        delete fieldsToPlay.at(i);
-    }
+    for (auto & i : fieldsToPlay)
+        delete i;
 
     for (unsigned int i=0; i<fieldsBlue.size(); ++i) {
 
@@ -23,10 +20,8 @@ Board::~Board() {
         delete fieldsYellow.at(i);
     }
 
-    for (unsigned int i=0; i<players.size(); ++i) {
-
-        delete players.at(i);
-    }
+    for (auto & i : players)
+        delete i;
 
     delete dice;
     delete timer;
@@ -144,7 +139,7 @@ void Board::play() {
 
         whoseTurn++;
         if(whoseTurn == 4)
-            whoseTurn=0;
+            whoseTurn = 0;
 
         if(!(fieldsToPlay.at(0)->stayingPawn))
             fieldsToPlay.at(0)->set_Pixmap(QPixmap(":/img/bluestart.png"));

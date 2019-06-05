@@ -7,7 +7,7 @@
 
 struct Dice {
 
-    Dice();
+    Dice() = default;
     int roll();
 };
 

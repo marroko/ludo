@@ -25,19 +25,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        main.cpp \
-    Board.cpp \
-    Player.cpp \
-    Dice.cpp \
-    Pawn.cpp
+        src\main.cpp \
+    src\Board.cpp \
+    src\Player.cpp \
+    src\Dice.cpp \
+    src\Pawn.cpp
 
 HEADERS += \
-    Field.h \
-    Board.h \
-    Vector.h \
-    Player.h \
-    Dice.h \
-    Pawn.h
+    headers\Field.h \
+    headers\Board.h \
+    headers\Vector.h \
+    headers\Player.h \
+    headers\Dice.h \
+    headers\Pawn.h
 
 FORMS += \
         mainwindow.ui

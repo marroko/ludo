@@ -1,7 +1,5 @@
 #include "..\headers\Dice.h"
 
-Dice::Dice() {}
-
 int Dice::roll() {
 
     std::default_random_engine randomNumber;

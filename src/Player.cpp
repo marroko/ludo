@@ -1,8 +1,10 @@
 #include "..\headers\Player.h"
 #include <thread>
 #include <chrono>
+#include <QDebug> // for qInfo() treated as std::cout
 
-constexpr int BREAK = 100;
+constexpr int BREAK = 5; // higher BREAK means lower simulation speed
+                           // lower BREAK means higher simulation speed
 
 Player::Player(Field *start_point, Fields &playerFields, char col, unsigned int p) :
 
@@ -19,19 +21,19 @@ Player::Player(Field *start_point, Fields &playerFields, char col, unsigned int 
 
 Player::~Player() {
 
-    for (unsigned int i=0; i<pawns.size(); ++i)
-        delete pawns.at(i);
+    for (auto & i : pawns)
+        delete i;
 }
 
 int Player::turn(Dice *dice, Players &players, Fields &fieldsToPlay) {
 
     int result;
-    std::cout << "Player " << colour << " ";
+    qInfo() << "Player" << colour;
 
     if(hasPawnOnField) {
 
         result = dice->roll();
-        std::cout << result << '\n';
+        qInfo() << result;
         pawns.at(0)->currentField->set_Pixmap(QPixmap(":/img/border.png"));
 
         while(result) {
@@ -60,7 +62,8 @@ int Player::turn(Dice *dice, Players &players, Fields &fieldsToPlay) {
             result--;
         }
         if(finishedPawns == 4) { // condition which ends the game
-            std::cout << "PLAYER " << colour << " WINS!!!\n";
+
+            qInfo() << "PLAYER" << colour << "WINS!!!";
             return 0;
         }
     }
@@ -71,7 +74,7 @@ int Player::turn(Dice *dice, Players &players, Fields &fieldsToPlay) {
        while(attempts) {
 
            result = dice->roll();
-           std::cout << result << '\n';
+           qInfo() << result;
 
            if(result == 6) {
 
@@ -103,13 +106,13 @@ int Player::turn(Dice *dice, Players &players, Fields &fieldsToPlay) {
                break;
            }
 
-           std::this_thread::sleep_for (std::chrono::milliseconds(BREAK));
+           std::this_thread::sleep_for(std::chrono::milliseconds(BREAK));
 
            attempts--;
        }
     }
 
-    std::this_thread::sleep_for (std::chrono::milliseconds(BREAK));
+    std::this_thread::sleep_for(std::chrono::milliseconds(BREAK));
 
     return 1; //next player
 }

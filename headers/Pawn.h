@@ -15,7 +15,7 @@ public:
     Pawn(Field *basePoint, char col, unsigned int start);
 
     void setField(Field *f) { currentField = f; }
-    Field *& getField() { return currentField ; }
+    Field *& getField() { return currentField; }
 
     bool move(Fields &fieldsToPlay, Fields &basFin, unsigned int &FINISH);
     char getColour();

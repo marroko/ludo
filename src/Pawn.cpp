@@ -15,8 +15,8 @@ bool Pawn::move(Fields &fieldsToPlay, Fields &basFin, unsigned int &FINISH) {
         currentField = basFin.at(4+(passedFields-48));
 
         if(passedFields == FINISH) {
+
             FINISH--;
-//            delete basFin.at(basFin.size()-1);
             basFin.pop_back();
             return true;
         }
